@@ -44,7 +44,7 @@ mousewheel: {
 */
 
 // количество слайдов для показа
-slidesPerView: 1.26,
+slidesPerView: 'auto',
 
 // отступы между слайдами
 //spaceBetween: 0,
@@ -77,9 +77,7 @@ breakpoint: {
     }
 },
 */
-
 });
-
 
 let labels = document.querySelectorAll(".label");
 let labelFull = document.querySelectorAll(".labelFull");
