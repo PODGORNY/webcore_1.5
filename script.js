@@ -1,84 +1,30 @@
-new Swiper(".scroll-panel", {
-    /*
-    // cтрелки
-    navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev"
-    },
-    */
+const slider = document.querySelector('.scroll-panel');
+const breakSwiper = window.matchMedia('(max-width: 767px)');
+let mySwiper;
 
-    // пагинатор
-    pagination: {
-        el: ".swiper-pagination",
+function mobileSlider() {
+    if (breakSwiper.matches) {
+        mySwiper = new Swiper(slider, {
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            slidesPerView: 'auto',
+        });
 
-        // буллет
-        type: "bullets",
-        clickable: true,
-        // динамический буллет
-        //dynamicBullets: true,
+        slider.dataset.mobile = 'true';
 
-    /*    // прогрессбар
-        type: "progressbar",
-        */
-    },
-
-/*
-    // скролл
-    scrollbar: {
-        el: ".swiper-scrollbar",
-        draggable: true,
-    },
-*/
-
-// управление клавиатурой 
-keyboard: {
-    enabled: true,
-    pageUpDown: true,
-},
-/*
-// управление мышью
-mousewheel: {
-    sensitivity: 1,
-    //eventsTarget: ".scroll__button-container",
-},
-*/
-
-// количество слайдов для показа
-slidesPerView: 'auto',
-
-// отступы между слайдами
-//spaceBetween: 0,
-
-// активный слайд по центру
-//centeredSlides: true,
-
-// стартовый слайд
-//initialSlide: 0;
-
-//скорость
-//speed: 500;
-
-// вертикальный слайдер
-//direction: "vertical";
-
-// эффект потока при листании
-//effect: "coverflow",
-
-/* количество слайдов от ширины экрана
-breakpoint: {
-    320: {
-        slidesPerView: 1;
-    },
-    480: {
-        slidesPerView: 2;
-    },
-    720: {
-        slidesPerView: 3;
+    } else {
+        slider.dataset.mobile = 'false';
+        if (slider.classList.contains('swiper-initialized')) {
+            mySwiper.destroy();
+        }
     }
-},
-*/
-});
+}
+mobileSlider();
+breakSwiper.addEventListener('change', mobileSlider);
 
+//////////////
 let labels = document.querySelectorAll(".label");
 let labelFull = document.querySelectorAll(".labelFull");
 let buttonHope = document.querySelector(".footer__buttonOpen");
